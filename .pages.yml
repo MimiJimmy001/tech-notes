@@ -1,0 +1,127 @@
+media:
+  input: public/uploads
+  output: /public/uploads
+  categories: [image]
+  rename: true
+
+content:
+  - name: site
+    label: 个人资料与主页
+    type: file
+    path: _data/site.json
+    fields:
+      - name: profile
+        label: 基本资料
+        type: object
+        fields:
+          - { name: name, label: 姓名, type: string }
+          - { name: initials, label: 头像字母, type: string }
+          - { name: role, label: 求职岗位, type: string }
+          - { name: focus, label: 技术方向, type: string }
+          - { name: availability, label: 求职状态, type: string }
+          - { name: email, label: 联系邮箱, type: string }
+          - { name: github, label: GitHub 地址, type: string }
+          - { name: location, label: 所在城市与工作方式, type: string }
+          - { name: years, label: 经验年限, type: string }
+          - { name: summary, label: 个人简介, type: text }
+      - name: metrics
+        label: 数据概览
+        type: object
+        list: true
+        fields:
+          - { name: value, label: 数字, type: string }
+          - { name: label, label: 说明, type: string }
+      - name: heroMeta
+        label: 首页关键词
+        type: string
+        list: true
+      - name: experiences
+        label: 工作经历
+        type: object
+        list: true
+        fields:
+          - { name: period, label: 时间, type: string }
+          - { name: company, label: 公司, type: string }
+          - { name: role, label: 职位, type: string }
+          - { name: summary, label: 经历概述, type: text }
+          - { name: contributions, label: 主要贡献, type: string, list: true }
+      - name: skills
+        label: 技术能力
+        type: object
+        list: true
+        fields:
+          - { name: title, label: 分类, type: string }
+          - { name: icon, label: 图标, type: string }
+          - { name: description, label: 能力说明, type: text }
+          - { name: tags, label: 技术标签, type: string, list: true }
+      - name: strengths
+        label: 个人优势
+        type: object
+        list: true
+        fields:
+          - { name: number, label: 编号, type: string }
+          - { name: title, label: 标题, type: string }
+          - { name: text, label: 说明, type: text }
+
+  - name: projects
+    label: 项目作品
+    type: file
+    path: _data/projects.json
+    fields:
+      - name: items
+        label: 项目列表
+        type: object
+        list:
+          collapsible:
+            collapsed: false
+            summary: "{title}"
+        fields:
+          - { name: id, label: 唯一标识, type: string }
+          - { name: number, label: 编号, type: string }
+          - { name: title, label: 项目名称, type: string }
+          - { name: type, label: 项目类型, type: string }
+          - { name: role, label: 我的职责, type: string }
+          - { name: period, label: 项目时间, type: string }
+          - { name: stack, label: 技术栈, type: string, list: true }
+          - { name: summary, label: 项目介绍, type: text }
+          - { name: challenge, label: 遇到的难点, type: string, list: true }
+          - { name: solution, label: 解决方案, type: string, list: true }
+          - { name: impact, label: 项目结果, type: string, list: true }
+          - { name: highlight, label: 核心亮点, type: string }
+
+  - name: notes
+    label: 经验与文章
+    type: file
+    path: _data/notes.json
+    fields:
+      - name: items
+        label: 文章列表
+        type: object
+        list:
+          collapsible:
+            collapsed: false
+            summary: "{title}"
+        fields:
+          - { name: id, label: 唯一标识, type: string }
+          - { name: number, label: 编号, type: string }
+          - name: category
+            label: 分类
+            type: select
+            options: [性能优化, 问题排查, 学习总结, 工程实践, 项目复盘]
+          - { name: title, label: 标题, type: string }
+          - { name: excerpt, label: 摘要, type: text }
+          - { name: date, label: 日期, type: string }
+          - { name: readTime, label: 阅读时间, type: string }
+          - name: coverImage
+            label: 封面图片
+            type: image
+          - { name: lead, label: 导语, type: text }
+          - name: sections
+            label: 正文
+            type: object
+            list: true
+            fields:
+              - { name: heading, label: 小标题, type: string }
+              - name: content
+                label: 内容
+                type: rich-text
