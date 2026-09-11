@@ -29,3 +29,15 @@
 ### Cloudflare Pages
 
 创建 Pages 项目，直接上传当前目录；Framework preset 选择 `None`，无需构建命令。
+## 在线后台管理（Pages CMS）
+
+仓库已经内置 `.pages.yml` 配置，发布后可以在线管理：
+
+1. 打开 `https://app.pagescms.org`
+2. 使用 GitHub 登录并选择本作品集仓库
+3. 在“个人资料与主页”中修改姓名、邮箱、经历、技能
+4. 在“项目作品”中新增或修改项目
+5. 在“经验与文章”中撰写文章、上传封面图片
+6. 点击保存后，GitHub Pages 会自动重新发布网站
+
+所有内容保存在 `_data/`、`public/uploads/` 中，修改都有 Git 历史，可随时恢复。
