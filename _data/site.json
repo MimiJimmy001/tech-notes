@@ -1,6 +1,6 @@
 {
   "profile": {
-    "name": "林默",
+    "name": "朱奕凯",
     "initials": "L",
     "role": "前端开发工程师",
     "focus": "React / TypeScript / 复杂业务前端",
@@ -59,49 +59,49 @@
     {
       "title": "前端开发",
       "icon": "</>",
+      "description": "能独立完成中后台、移动端和可视化页面开发，重视可维护性与交互细节。",
       "tags": [
         "React",
         "Vue 3",
         "TypeScript",
         "JavaScript ES6+",
         "HTML / CSS"
-      ],
-      "description": "能独立完成中后台、移动端和可视化页面开发，重视可维护性与交互细节。"
+      ]
     },
     {
       "title": "工程与质量",
       "icon": "{}",
+      "description": "熟悉前端工程化、构建优化、代码规范和基础自动化测试。",
       "tags": [
         "Vite",
         "Webpack",
         "Git",
         "ESLint",
         "单元测试"
-      ],
-      "description": "熟悉前端工程化、构建优化、代码规范和基础自动化测试。"
+      ]
     },
     {
       "title": "性能与排查",
       "icon": "↗",
+      "description": "能使用监控、日志和性能工具定位问题，并完成优化闭环。",
       "tags": [
         "Performance",
         "DevTools",
         "Sentry",
         "弱网优化",
         "问题复盘"
-      ],
-      "description": "能使用监控、日志和性能工具定位问题，并完成优化闭环。"
+      ]
     },
     {
       "title": "协作与业务",
       "icon": "◎",
+      "description": "能把业务问题转成技术方案，并用清晰文档推进团队协作。",
       "tags": [
         "需求拆解",
         "技术方案",
         "Code Review",
         "跨团队协作"
-      ],
-      "description": "能把业务问题转成技术方案，并用清晰文档推进团队协作。"
+      ]
     }
   ],
   "strengths": [
