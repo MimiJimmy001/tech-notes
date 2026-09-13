@@ -27,13 +27,13 @@ window.portfolioDataFallback = {
     "notesIntro": "不只写结论，也记录数据为什么失真、评测如何设计，以及问题最终怎样复现和修复。",
     "blogName": "数据与模型工程笔记",
     "author": {
-      "displayName": "Z.",
+      "displayName": "MimiJimmy",
       "avatarText": "Z",
       "headline": "多模态数据、SFT 与 LLM 应用工程",
       "bio": "人工智能本科，关注多模态数据处理、SFT 数据质量、RAG 与工具调用 Agent 的工程化落地。",
       "topics": [
-        "Python / Pandas",
-        "SFT 数据",
+        "Python",
+        "SQL",
         "VLM",
         "RAG",
         "Agent",
