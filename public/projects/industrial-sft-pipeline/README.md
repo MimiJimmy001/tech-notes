@@ -54,13 +54,13 @@
 
 真实缺陷图全部通过质量过滤，平均分 4.72。VLM 在 83 张真实图中，有 82 张自发描述为“瓶”或瓶口结构。
 
-![真实缺陷样本](/public/projects/industrial-sft-pipeline/real-defect-samples.png)
+![真实缺陷样本](/public/projects/industrial-sft-pipeline/real-defect-samples.jpg)
 
 ### 真实正常图
 
 真实正常图平均分 4.88，作为分布对照和过滤器召回结果的重要参照。
 
-![真实正常样本](/public/projects/industrial-sft-pipeline/real-good-samples.png)
+![真实正常样本](/public/projects/industrial-sft-pipeline/real-good-samples.jpg)
 
 ### GAN 合成图
 
@@ -68,7 +68,7 @@ GAN 输出出现明显的类别漂移。50 张合成图中只有 24 张通过过
 
 这说明问题不是合成图不够多样，而是生成器持续输出错误类别。此现象应称为“类别漂移 / 身份丢失”，不能称为 mode collapse。
 
-![GAN 合成样本](/public/projects/industrial-sft-pipeline/gan-samples.png)
+![GAN 合成样本](/public/projects/industrial-sft-pipeline/gan-samples.jpg)
 
 ### 过滤评测结果
 
