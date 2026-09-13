@@ -4,7 +4,7 @@
 
 ## 在线管理
 
-打开 `https://app.pagescms.org/ouou47471-cpu/hr-portfolio/main`，可以编辑：
+打开 `https://app.pagescms.org/ouou47471-cpu/tech-notes/main`，可以编辑：
 
 - 页面标题、首页说明、栏目标题和按钮文字
 - 项目背景、参与角色、技术栈、问题、解决方法和复盘结果
@@ -19,3 +19,4 @@
 ## 部署
 
 仓库已启用 GitHub Pages，发布分支为 `main`，发布目录为根目录。
+
