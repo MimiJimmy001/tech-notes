@@ -6,89 +6,33 @@ media:
 
 content:
   - name: site
-    label: 个人资料与主页
+    label: 页面文字
     type: file
     path: _data/site.json
     fields:
       - name: page
         label: 首页与栏目文案
-        description: 修改页面标题、大标题、各栏目说明和联系文案。
         type: object
         fields:
           - { name: metaTitle, label: 浏览器标题, type: string }
           - { name: metaDescription, label: 搜索摘要, type: text }
-          - { name: navContactLabel, label: 导航联系按钮, type: string }
-          - { name: heroTitleLine1, label: 首页大标题第一行, type: string }
-          - { name: heroTitleLine2Prefix, label: 首页大标题第二行前缀, type: string }
-          - { name: heroTitleAccent, label: 首页大标题强调词, type: string }
-          - { name: heroTitleLine2Suffix, label: 首页大标题结尾, type: string }
-          - { name: panelQuoteLabel, label: 速览卡片引语标签, type: string }
-          - { name: panelQuote, label: 速览卡片引语, type: text }
-          - { name: capabilityKeywords, label: 核心关键词, type: string, list: true }
+          - { name: heroEyebrow, label: 首页英文标签, type: string }
+          - { name: heroTitleLead, label: 首页大标题第一行, type: string }
+          - { name: heroTitleAccent, label: 首页大标题强调内容, type: string }
+          - { name: heroSummary, label: 首页说明, type: text }
           - { name: projectsButtonLabel, label: 项目按钮文字, type: string }
           - { name: notesButtonLabel, label: 经验按钮文字, type: string }
+          - { name: heroTags, label: 首页关键词, type: string, list: true }
           - { name: projectsEyebrow, label: 项目区英文标签, type: string }
           - { name: projectsTitle, label: 项目区标题, type: string }
           - { name: projectsIntro, label: 项目区说明, type: text }
-          - { name: skillsEyebrow, label: 能力区英文标签, type: string }
-          - { name: skillsTitle, label: 能力区标题, type: string }
-          - { name: skillsIntro, label: 能力区说明, type: text }
           - { name: notesEyebrow, label: 经验区英文标签, type: string }
           - { name: notesTitle, label: 经验区标题, type: string }
           - { name: notesIntro, label: 经验区说明, type: text }
-          - { name: strengthsEyebrow, label: 优势区英文标签, type: string }
-          - { name: strengthsTitle, label: 优势区标题, type: string }
-          - { name: contactEyebrow, label: 联系区英文标签, type: string }
-          - { name: contactTitleLine1, label: 联系大标题第一行, type: string }
-          - { name: contactTitleLine2, label: 联系大标题第二行, type: string }
-          - { name: contactIntro, label: 联系区说明, type: text }
-          - { name: contactPrimaryLabel, label: 主联系按钮文字, type: string }
-          - { name: contactNote, label: 联系区备注, type: string }
-      - name: profile
-        label: 基本资料
-        type: object
-        fields:
-          - { name: name, label: 显示名称（可填化名）, type: string }
-          - { name: initials, label: 头像字母, type: string }
-          - { name: role, label: 求职岗位, type: string }
-          - { name: focus, label: 技术方向, type: string }
-          - { name: availability, label: 求职状态, type: string }
-          - { name: email, label: 联系邮箱（留空则使用 GitHub）, type: string }
-          - { name: github, label: GitHub 地址, type: string }
-          - { name: location, label: 工作方式（勿填详细地址）, type: string }
-          - { name: years, label: 经验或毕业状态, type: string }
-          - { name: summary, label: 个人简介, type: text }
-      - name: metrics
-        label: 数据概览
-        type: object
-        list: true
-        fields:
-          - { name: value, label: 数字, type: string }
-          - { name: label, label: 说明, type: string }
-      - name: heroMeta
-        label: 首页关键词
-        type: string
-        list: true
-      - name: skills
-        label: 技术能力
-        type: object
-        list: true
-        fields:
-          - { name: title, label: 分类, type: string }
-          - { name: icon, label: 图标, type: string }
-          - { name: description, label: 能力说明, type: text }
-          - { name: tags, label: 技术标签, type: string, list: true }
-      - name: strengths
-        label: 个人优势
-        type: object
-        list: true
-        fields:
-          - { name: number, label: 编号, type: string }
-          - { name: title, label: 标题, type: string }
-          - { name: text, label: 说明, type: text }
+          - { name: footerName, label: 页脚名称, type: string }
 
   - name: projects
-    label: 项目作品
+    label: 项目记录
     type: file
     path: _data/projects.json
     fields:
@@ -104,17 +48,17 @@ content:
           - { name: number, label: 编号, type: string }
           - { name: title, label: 项目名称, type: string }
           - { name: type, label: 项目类型, type: string }
-          - { name: role, label: 我的职责, type: string }
+          - { name: role, label: 参与角色, type: string }
           - { name: period, label: 项目时间, type: string }
           - { name: stack, label: 技术栈, type: string, list: true }
           - { name: summary, label: 项目介绍, type: text }
-          - { name: challenge, label: 遇到的难点, type: string, list: true }
-          - { name: solution, label: 解决方案, type: string, list: true }
-          - { name: impact, label: 项目结果, type: string, list: true }
+          - { name: challenge, label: 遇到的问题, type: string, list: true }
+          - { name: solution, label: 解决方法, type: string, list: true }
+          - { name: impact, label: 结果与复盘, type: string, list: true }
           - { name: highlight, label: 核心亮点, type: string }
 
   - name: notes
-    label: 经验与文章
+    label: 经验总结
     type: file
     path: _data/notes.json
     fields:
