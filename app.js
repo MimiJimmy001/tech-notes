@@ -74,10 +74,6 @@ function renderPage() {
   setText("projectsEyebrow", page.projectsEyebrow);
   setText("projectsTitle", page.projectsTitle);
   setText("projectsIntro", page.projectsIntro);
-  setText("experienceEyebrow", page.experienceEyebrow);
-  setText("experienceTitle", page.experienceTitle);
-  setText("experienceIntro", page.experienceIntro);
-  setText("recruiterTitle", page.recruiterTitle);
   setText("skillsEyebrow", page.skillsEyebrow);
   setText("skillsTitle", page.skillsTitle);
   setText("skillsIntro", page.skillsIntro);
@@ -103,16 +99,6 @@ function renderPage() {
   if (contactTitle) {
     contactTitle.innerHTML = escapeHtml(page.contactTitleLine1 || "") + "<br>" + escapeHtml(page.contactTitleLine2 || "");
   }
-
-  const recruiterPoints = $("#recruiterPoints");
-  if (recruiterPoints && Array.isArray(page.recruiterPoints)) {
-    recruiterPoints.innerHTML = page.recruiterPoints.map(function (item) {
-      return "<li>" + escapeHtml(item) + "</li>";
-    }).join("");
-  }
-
-  const recruiterCta = $("#recruiterCta");
-  if (recruiterCta) recruiterCta.innerHTML = escapeHtml(page.recruiterCta || "查看联系方式") + " <span>→</span>";
 
   const capabilityStrip = $("#capabilityStrip");
   if (capabilityStrip) {
@@ -167,20 +153,6 @@ function renderProjects() {
       '<div class="project-mini-block"><span>解决与结果</span><p>' + escapeHtml(project.impact[0]) + '</p></div>' +
       '<div class="stack-row">' + project.stack.map(function (item) { return "<span>" + escapeHtml(item) + "</span>"; }).join("") + '</div>' +
       '<button class="text-button" type="button" data-project="' + project.id + '">项目详情 <span>→</span></button>' +
-    '</article>';
-  }).join("");
-}
-
-function renderExperience() {
-  $("#experienceTimeline").innerHTML = portfolioData.experiences.map(function (experience, index) {
-    return '<article class="timeline-item reveal">' +
-      '<div class="timeline-dot"><span>' + String(index + 1).padStart(2, "0") + '</span></div>' +
-      '<div class="timeline-card">' +
-        '<p>' + escapeHtml(experience.period) + '</p>' +
-        '<div class="timeline-title"><h3>' + escapeHtml(experience.company) + '</h3><span>' + escapeHtml(experience.role) + '</span></div>' +
-        '<p class="timeline-summary">' + escapeHtml(experience.summary) + '</p>' +
-        '<ul>' + experience.contributions.map(function (item) { return "<li>" + escapeHtml(item) + "</li>"; }).join("") + '</ul>' +
-      '</div>' +
     '</article>';
   }).join("");
 }
@@ -399,7 +371,6 @@ async function loadManagedContent() {
       metrics: site.metrics,
       heroMeta: site.heroMeta,
       projects: projects.items,
-      experiences: site.experiences,
       skills: site.skills,
       notes: notes.items,
       strengths: site.strengths
@@ -415,7 +386,6 @@ async function boot() {
   renderProfile();
   renderPage();
   renderProjects();
-  renderExperience();
   renderSkills();
   renderStrengths();
   renderNoteFilters();

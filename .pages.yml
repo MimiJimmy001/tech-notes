@@ -30,12 +30,6 @@ content:
           - { name: projectsEyebrow, label: 项目区英文标签, type: string }
           - { name: projectsTitle, label: 项目区标题, type: string }
           - { name: projectsIntro, label: 项目区说明, type: text }
-          - { name: experienceEyebrow, label: 经历区英文标签, type: string }
-          - { name: experienceTitle, label: 经历区标题, type: string }
-          - { name: experienceIntro, label: 经历区说明, type: text }
-          - { name: recruiterTitle, label: 招聘方提示标题, type: string }
-          - { name: recruiterPoints, label: 招聘方提示内容, type: string, list: true }
-          - { name: recruiterCta, label: 招聘方提示按钮, type: string }
           - { name: skillsEyebrow, label: 能力区英文标签, type: string }
           - { name: skillsTitle, label: 能力区标题, type: string }
           - { name: skillsIntro, label: 能力区说明, type: text }
@@ -75,16 +69,6 @@ content:
         label: 首页关键词
         type: string
         list: true
-      - name: experiences
-        label: 工作经历
-        type: object
-        list: true
-        fields:
-          - { name: period, label: 时间, type: string }
-          - { name: company, label: 公司, type: string }
-          - { name: role, label: 职位, type: string }
-          - { name: summary, label: 经历概述, type: text }
-          - { name: contributions, label: 主要贡献, type: string, list: true }
       - name: skills
         label: 技术能力
         type: object

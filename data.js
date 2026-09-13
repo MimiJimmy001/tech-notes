@@ -81,30 +81,6 @@ window.portfolioDataFallback = {
       highlight: "知识沉淀与工具设计"
     }
   ],
-  experiences: [
-    {
-      period: "近期经历",
-      company: "XX 科技有限公司",
-      role: "前端开发工程师",
-      summary: "负责中后台与跨端业务模块，从需求评审、方案设计推进到上线维护。",
-      contributions: [
-        "主导数据可视化平台前端架构与性能优化，推进组件和状态管理重构。",
-        "与产品、设计、后端协作梳理复杂流程，将模糊需求拆解为可验证的技术方案。",
-        "参与 Code Review、线上问题复盘和前端规范沉淀。"
-      ]
-    },
-    {
-      period: "早期经历",
-      company: "XX 互联网公司",
-      role: "前端开发实习生",
-      summary: "参与管理后台和移动端页面开发，完成从需求开发到联调测试的完整流程。",
-      contributions: [
-        "独立完成 20+ 个业务页面与通用组件，覆盖列表、表单和权限场景。",
-        "整理接口联调排查清单，减少前后端重复沟通。",
-        "参与旧项目 TypeScript 渐进式迁移。"
-      ]
-    }
-  ],
   skills: [
     { title: "前端开发", icon: "</>", tags: ["React", "Vue 3", "TypeScript", "JavaScript ES6+", "HTML / CSS"], description: "能独立完成中后台、移动端和可视化页面开发，重视可维护性与交互细节。" },
     { title: "工程与质量", icon: "{}", tags: ["Vite", "Webpack", "Git", "ESLint", "单元测试"], description: "熟悉前端工程化、构建优化、代码规范和基础自动化测试。" },
