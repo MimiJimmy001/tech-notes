@@ -1,26 +1,26 @@
 /*
  * 个人资料、项目和文章内容都集中在这里。
- * 发布会前请把“林默”、邮箱、公司名称、项目数据替换成真实内容。
+ * 页面默认隐藏姓名、城市和邮箱，仅保留岗位、技术能力与 GitHub 联系入口。
  */
 window.portfolioDataFallback = {
   profile: {
-    name: "林默",
-    initials: "L",
-    role: "前端开发工程师",
-    focus: "React / TypeScript / 复杂业务前端",
-    availability: "正在寻找前端开发机会",
-    email: "hello@example.com",
-    github: "https://github.com/your-name",
-    location: "杭州 · 可接受远程 / 混合办公",
-    years: "3 年经验",
-    summary: "我关注的不只是把页面写出来，更在意需求如何落地、性能是否稳定，以及问题出现后能否快速定位并沉淀为可复用的经验。"
+    name: "Z.",
+    initials: "Z",
+    role: "大模型数据工程师",
+    focus: "Python / SQL / LLM数据处理与调试",
+    availability: "正在寻找机会",
+    email: "",
+    github: "https://github.com/zhuawaddk",
+    location: "工作方式可沟通",
+    years: "应届毕业生",
+    summary: "关注数据清洗、模型数据处理与调试流程，重视结果可验证、过程可复用，并习惯记录问题定位与解决方案。"
   },
   metrics: [
-    { value: "03", label: "年开发经验" },
-    { value: "12+", label: "项目与需求交付" },
-    { value: "02", label: "从 0 到 1 项目" }
+    { value: "Python", label: "主要语言" },
+    { value: "SQL", label: "数据处理" },
+    { value: "LLM", label: "数据与调试" }
   ],
-  heroMeta: ["杭州 / 接受远程", "3 年项目经验", "React + TypeScript", "可尽快到岗"],
+  heroMeta: ["开放数据工程机会", "应届毕业生", "Python / SQL / LLM", "可尽快到岗"],
   projects: [
     {
       id: "visual-platform",
@@ -83,7 +83,7 @@ window.portfolioDataFallback = {
   ],
   experiences: [
     {
-      period: "2023.07 — 至今",
+      period: "近期经历",
       company: "XX 科技有限公司",
       role: "前端开发工程师",
       summary: "负责中后台与跨端业务模块，从需求评审、方案设计推进到上线维护。",
@@ -94,7 +94,7 @@ window.portfolioDataFallback = {
       ]
     },
     {
-      period: "2022.07 — 2023.05",
+      period: "早期经历",
       company: "XX 互联网公司",
       role: "前端开发实习生",
       summary: "参与管理后台和移动端页面开发，完成从需求开发到联调测试的完整流程。",

@@ -29,8 +29,16 @@ function renderProfile() {
   $("#profileAvatar").textContent = profile.initials;
   $("#panelName").textContent = profile.name;
   $("#panelRole").textContent = profile.role;
-  $("#panelEmail").textContent = profile.email;
-  $("#panelEmail").href = "mailto:" + profile.email;
+  $("#panelEmail").textContent = profile.email || "通过 GitHub 联系";
+  $("#panelEmail").href = profile.email ? "mailto:" + profile.email : profile.github;
+  $("#panelEmail").target = profile.email ? "_self" : "_blank";
+  $("#panelEmail").rel = "noopener";
+  const contactPrimary = $("#contactPrimary");
+  if (contactPrimary) {
+    contactPrimary.href = profile.github;
+    contactPrimary.target = "_blank";
+    contactPrimary.rel = "noopener";
+  }
   $("#footerName").textContent = profile.name + " · " + profile.role;
   document.title = profile.name + " | " + profile.role + "作品集";
 
@@ -42,8 +50,8 @@ function renderProfile() {
   }).join("");
 
   const contactLinks = [
-    { label: "GitHub", url: profile.github },
-    { label: "所在地", text: profile.location }
+    { label: "GitHub 私信 / 主页", url: profile.github },
+    { label: "工作方式", text: profile.location }
   ];
   $("#contactLinks").innerHTML = contactLinks.map(function (item) {
     if (item.url) return '<a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">' + escapeHtml(item.label) + " ↗</a>";

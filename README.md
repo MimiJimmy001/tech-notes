@@ -6,7 +6,7 @@
 
 所有个人资料、项目、经历和文章都集中在 `data.js` 中。发布前请至少替换：
 
-1. `profile.name`、`profile.email`、`profile.github`、`profile.location`
+1. `profile.name`、`profile.github`、`profile.location`（邮箱可留空，页面会改为 GitHub 联系入口）
 2. `projects` 中的示例项目、职责、难点、解决方案和结果
 3. `experiences` 中的公司、时间和贡献
 4. `notes` 中的真实问题复盘与学习总结

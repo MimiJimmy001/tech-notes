@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="林默的前端开发作品集，展示项目经历、问题解决方法、工程实践与学习总结。">
+  <meta name="description" content="前端开发工程师作品集，展示项目经历、问题解决方法、工程实践与学习总结。">
   <meta name="theme-color" content="#f5f3ed">
-  <meta property="og:title" content="林默 | 前端开发工程师作品集">
+  <meta property="og:title" content="前端开发工程师 | 项目与经验作品集">
   <meta property="og:description" content="项目经历、技术能力、问题复盘与学习总结。">
   <meta property="og:type" content="website">
-  <title>林默 | 前端开发工程师作品集</title>
+  <title>前端开发工程师 | 项目与经验作品集</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%231f3328%22/><text x=%2250%22 y=%2268%22 text-anchor=%22middle%22 font-size=%2256%22 font-family=%22Arial%22 fill=%22%23f5f3ed%22>L</text></svg>">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "林默",
-      "jobTitle": "前端开发工程师",
-      "description": "专注于 React、TypeScript 与复杂业务前端开发。",
-      "knowsAbout": ["React", "TypeScript", "前端性能优化", "工程化"]
+      "@type": "ProfilePage",
+      "name": "前端开发工程师作品集",
+      "about": {
+        "@type": "Person",
+        "jobTitle": "前端开发工程师",
+        "knowsAbout": ["React", "TypeScript", "前端性能优化", "工程化"]
+      }
     }
   </script>
 </head>
@@ -30,7 +32,7 @@
     <div class="nav-shell">
       <a class="brand" href="#home" aria-label="返回首页">
         <span class="brand-mark" id="brandMark">L</span>
-        <span class="brand-copy"><strong id="brandName">林默</strong><small>PORTFOLIO</small></span>
+        <span class="brand-copy"><strong id="brandName">L.</strong><small>PORTFOLIO</small></span>
       </a>
       <nav class="main-nav" aria-label="主导航">
         <a class="nav-link active" href="#home">首页</a>
@@ -45,7 +47,7 @@
           <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
           <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg>
         </button>
-        <a class="nav-cta" href="mailto:hello@example.com">联系我 <span>↗</span></a>
+        <a class="nav-cta" href="#contact">联系我 <span>↗</span></a>
         <button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false"><span></span><span></span></button>
       </div>
     </div>
@@ -55,7 +57,7 @@
     <section class="hero section-shell" id="home">
       <div class="hero-copy reveal">
         <div class="availability"><i></i><span id="availability">正在寻找前端开发机会</span></div>
-        <p class="hero-kicker">HELLO, I'M <span id="heroName">林默</span></p>
+        <p class="hero-kicker">HELLO, I'M <span id="heroName">L.</span></p>
         <h1>把复杂问题<br>做成<span>清晰、可靠</span>的产品。</h1>
         <p class="hero-role" id="heroRole">前端开发工程师 · React / TypeScript</p>
         <p class="hero-summary" id="heroSummary">我关注的不只是把页面写出来，更在意需求如何落地、性能是否稳定，以及问题出现后能否快速定位并沉淀为可复用的经验。</p>
@@ -73,7 +75,7 @@
         </div>
         <div class="profile-head">
           <div class="profile-avatar" id="profileAvatar">L</div>
-          <div><strong id="panelName">林默</strong><small id="panelRole">前端开发工程师</small></div>
+          <div><strong id="panelName">L.</strong><small id="panelRole">前端开发工程师</small></div>
         </div>
         <div class="panel-metrics" id="panelMetrics"></div>
         <div class="panel-summary">
@@ -81,7 +83,7 @@
           <strong>能独立推进模块落地，也愿意把踩过的坑变成团队资产。</strong>
         </div>
         <div class="panel-contact">
-          <a href="mailto:hello@example.com" id="panelEmail">hello@example.com</a>
+          <a href="#contact" id="panelEmail">通过 GitHub 联系</a>
           <span>期待与你交流项目与机会</span>
         </div>
       </aside>
@@ -119,7 +121,7 @@
               <li>重视代码质量、性能体验和长期维护成本。</li>
               <li>鼓励复盘，也愿意让问题经验在团队内沉淀。</li>
             </ul>
-            <a href="mailto:hello@example.com">直接联系我 <span>→</span></a>
+            <a href="#contact">查看联系方式 <span>→</span></a>
           </aside>
         </div>
       </div>
@@ -166,7 +168,7 @@
           <p>我目前关注中后台、工具平台和复杂业务前端方向，也欢迎远程或混合办公机会。</p>
         </div>
         <div class="contact-actions">
-          <a class="contact-primary" href="mailto:hello@example.com">hello@example.com <span>↗</span></a>
+          <a class="contact-primary" id="contactPrimary" href="https://github.com/ouou47471-cpu" target="_blank" rel="noopener">通过 GitHub 联系 <span>↗</span></a>
           <div class="contact-secondary" id="contactLinks"></div>
           <small>通常会在 24 小时内回复。</small>
         </div>
@@ -176,7 +178,7 @@
 
   <footer class="site-footer">
     <div class="section-shell footer-inner">
-      <div><span class="brand-mark">L</span><strong id="footerName">林默 · 前端开发工程师</strong></div>
+      <div><span class="brand-mark">L</span><strong id="footerName">L. · 前端开发工程师</strong></div>
       <p>© <span id="currentYear">2026</span> 保留所有项目与文字内容。</p>
       <a href="#home">回到顶部 ↑</a>
     </div>

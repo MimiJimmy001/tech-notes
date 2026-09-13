@@ -1,34 +1,34 @@
 {
   "profile": {
-    "name": "朱奕凯",
+    "name": "Z.",
     "initials": "Z",
     "role": "大模型数据工程师",
     "focus": "Python / SQL / LLM数据处理与调试",
     "availability": "正在寻找机会",
-    "email": "zhuyikai_guangzhou@foxmail.com",
+    "email": "",
     "github": "https://github.com/zhuawaddk",
-    "location": "广州 · 可接受短期出差 / 驻场",
-    "years": "26届毕业生",
-    "summary": "我关注的不只是把页面写出来，更在意需求如何落地、性能是否稳定，以及问题出现后能否快速定位并沉淀为可复用的经验。"
+    "location": "工作方式可沟通",
+    "years": "应届毕业生",
+    "summary": "关注数据清洗、模型数据处理与调试流程，重视结果可验证、过程可复用，并习惯记录问题定位与解决方案。"
   },
   "metrics": [
     {
-      "value": "03",
-      "label": "年开发经验"
+      "value": "Python",
+      "label": "主要语言"
     },
     {
-      "value": "12+",
-      "label": "项目与需求交付"
+      "value": "SQL",
+      "label": "数据处理"
     },
     {
-      "value": "02",
-      "label": "从 0 到 1 项目"
+      "value": "LLM",
+      "label": "数据与调试"
     }
   ],
   "heroMeta": [
-    "杭州 / 接受远程",
-    "3 年项目经验",
-    "React + TypeScript",
+    "开放数据工程机会",
+    "应届毕业生",
+    "Python / SQL / LLM",
     "可尽快到岗"
   ],
   "experiences": [
