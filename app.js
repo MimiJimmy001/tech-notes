@@ -178,6 +178,148 @@ function renderNotes() {
   if (target) target.hidden = filtered.length === 0;
 }
 
+function safeUrl(value) {
+  const url = String(value || "").trim();
+  if (url.startsWith("/") || url.startsWith("https://") || url.startsWith("http://")) {
+    return escapeHtml(url);
+  }
+  return "#";
+}
+
+function renderInlineMarkdown(value) {
+  let output = escapeHtml(value);
+  output = output.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function (_, alt, url) {
+    return '<img src="' + safeUrl(url) + '" alt="' + alt + '" loading="lazy">';
+  });
+  output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, url) {
+    return '<a href="' + safeUrl(url) + '" target="_blank" rel="noopener">' + label + "</a>";
+  });
+  output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
+  return output;
+}
+
+function renderMarkdown(markdown) {
+  const lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n");
+  const html = [];
+  let index = 0;
+  let listType = "";
+  let inCode = false;
+  let codeLines = [];
+
+  function closeList() {
+    if (!listType) return;
+    html.push(listType === "ol" ? "</ol>" : "</ul>");
+    listType = "";
+  }
+
+  while (index < lines.length) {
+    const line = lines[index];
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith("```")) {
+      closeList();
+      if (inCode) {
+        html.push("<pre><code>" + escapeHtml(codeLines.join("\n")) + "</code></pre>");
+        codeLines = [];
+        inCode = false;
+      } else {
+        inCode = true;
+      }
+      index += 1;
+      continue;
+    }
+
+    if (inCode) {
+      codeLines.push(line);
+      index += 1;
+      continue;
+    }
+
+    if (!trimmed) {
+      closeList();
+      index += 1;
+      continue;
+    }
+
+    if (/^\|/.test(trimmed) && index + 1 < lines.length && /^\|[\s:\-|]+\|$/.test(lines[index + 1].trim())) {
+      closeList();
+      const header = trimmed.slice(1, -1).split("|").map(function (cell) { return cell.trim(); });
+      const rows = [];
+      index += 2;
+      while (index < lines.length && /^\|/.test(lines[index].trim())) {
+        rows.push(lines[index].trim().slice(1, -1).split("|").map(function (cell) { return cell.trim(); }));
+        index += 1;
+      }
+      html.push("<div class=\"markdown-table-wrap\"><table><thead><tr>" + header.map(function (cell) {
+        return "<th>" + renderInlineMarkdown(cell) + "</th>";
+      }).join("") + "</tr></thead><tbody>" + rows.map(function (row) {
+        return "<tr>" + row.map(function (cell) { return "<td>" + renderInlineMarkdown(cell) + "</td>"; }).join("") + "</tr>";
+      }).join("") + "</tbody></table></div>");
+      continue;
+    }
+
+    const heading = trimmed.match(/^(#{1,4})\s+(.+)$/);
+    if (heading) {
+      closeList();
+      const level = heading[1].length;
+      html.push("<h" + level + ">" + renderInlineMarkdown(heading[2]) + "</h" + level + ">");
+      index += 1;
+      continue;
+    }
+
+    if (/^---+$/.test(trimmed)) {
+      closeList();
+      html.push("<hr>");
+      index += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith("> ")) {
+      closeList();
+      html.push("<blockquote>" + renderInlineMarkdown(trimmed.slice(2)) + "</blockquote>");
+      index += 1;
+      continue;
+    }
+
+    const unordered = trimmed.match(/^- (.+)$/);
+    const ordered = trimmed.match(/^\d+\. (.+)$/);
+    if (unordered || ordered) {
+      const nextListType = unordered ? "ul" : "ol";
+      if (listType !== nextListType) {
+        closeList();
+        listType = nextListType;
+        html.push("<" + listType + ">");
+      }
+      html.push("<li>" + renderInlineMarkdown((unordered || ordered)[1]) + "</li>");
+      index += 1;
+      continue;
+    }
+
+    if (/^!\[[^\]]*\]\([^)]+\)$/.test(trimmed)) {
+      closeList();
+      html.push("<figure>" + renderInlineMarkdown(trimmed) + "</figure>");
+      index += 1;
+      continue;
+    }
+
+    closeList();
+    const paragraph = [trimmed];
+    index += 1;
+    while (index < lines.length) {
+      const next = lines[index].trim();
+      if (!next || /^(#{1,4})\s+/.test(next) || /^[-*]\s+/.test(next) || /^\d+\.\s+/.test(next) || /^!\[[^\]]*\]\([^)]+\)$/.test(next)) break;
+      paragraph.push(next);
+      index += 1;
+    }
+    html.push("<p>" + renderInlineMarkdown(paragraph.join(" ")) + "</p>");
+  }
+
+  closeList();
+  if (inCode) html.push("<pre><code>" + escapeHtml(codeLines.join("\n")) + "</code></pre>");
+  return html.join("");
+}
+
 function renderRichContent(rawContent) {
   if (Array.isArray(rawContent)) {
     return "<ul>" + rawContent.map(function (item) { return "<li>" + escapeHtml(item) + "</li>"; }).join("") + "</ul>";
@@ -193,9 +335,26 @@ function renderRichContent(rawContent) {
   }).join("");
 }
 
-function openProject(id) {
+async function openProject(id) {
   const project = (portfolioData.projects || []).find(function (item) { return item.id === id; });
   if (!project) return;
+  if (project.detailMarkdown) {
+    try {
+      const response = await fetch(project.detailMarkdown, { cache: "no-store" });
+      if (!response.ok) throw new Error("Project detail is unavailable");
+      const markdown = await response.text();
+      openModal({
+        eyebrow: project.type || "项目",
+        number: project.number || "",
+        meta: [project.role, project.period, (project.stack || []).join(" / ")].filter(Boolean).join(" · "),
+        title: project.title || "项目详情",
+        markdown: markdown
+      });
+      return;
+    } catch (error) {
+      console.info("Using structured project summary.", error);
+    }
+  }
   openModal({
     eyebrow: project.type || "项目",
     number: project.number || "",
@@ -228,14 +387,26 @@ function openModal(data) {
   $("#modalNumber").textContent = data.number;
   $("#modalMeta").textContent = data.meta;
   $("#modalTitle").textContent = data.title;
-  $("#modalLead").textContent = data.lead;
-  $("#modalSections").innerHTML = (data.sections || []).map(function (section) {
-    return '<section><h3>' + escapeHtml(section.heading || "") + '</h3>' + renderRichContent(section.content) + '</section>';
-  }).join("");
+  $("#modalLead").textContent = data.lead || "";
+  const panel = $(".modal-panel");
+  if (data.markdown) {
+    panel.classList.add("markdown-mode");
+    $("#modalTitle").hidden = true;
+    $("#modalLead").hidden = true;
+    $("#modalSections").innerHTML = '<article class="project-markdown">' + renderMarkdown(data.markdown) + "</article>";
+  } else {
+    panel.classList.remove("markdown-mode");
+    $("#modalTitle").hidden = false;
+    $("#modalLead").hidden = false;
+    $("#modalSections").innerHTML = (data.sections || []).map(function (section) {
+      return '<section><h3>' + escapeHtml(section.heading || "") + '</h3>' + renderRichContent(section.content) + '</section>';
+    }).join("");
+  }
   lastFocusedElement = document.activeElement;
   $("#detailModal").classList.add("open");
   $("#detailModal").setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  panel.scrollTop = 0;
   $(".modal-close").focus();
 }
 

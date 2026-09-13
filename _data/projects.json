@@ -23,9 +23,10 @@
       "impact": [
         "在 15 个品类上产出 1725 条程序化模板样本。",
         "将误删 678 条样本的 dHash 方案替换为 MD5 精确去重，实现零误删。",
-        "通过 133 张盲测样本验证过滤器区分度，并定位到生成器 mode collapse 导致的类别身份丢失。"
+        "通过 133 张盲测样本验证过滤器区分度，并定位到生成器类别漂移导致的瓶身身份丢失。"
       ],
-      "highlight": "多模态数据构建与质量评测"
+      "highlight": "多模态数据构建与质量评测",
+      "detailMarkdown": "/public/projects/industrial-sft-pipeline/README.md"
     },
     {
       "id": "air-quality-agent",

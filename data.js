@@ -72,9 +72,10 @@ window.portfolioDataFallback = {
       "impact": [
         "在 15 个品类上产出 1725 条程序化模板样本。",
         "将误删 678 条样本的 dHash 方案替换为 MD5 精确去重，实现零误删。",
-        "通过 133 张盲测样本验证过滤器区分度，并定位到生成器 mode collapse 导致的类别身份丢失。"
+        "通过 133 张盲测样本验证过滤器区分度，并定位到生成器类别漂移导致的瓶身身份丢失。"
       ],
-      "highlight": "多模态数据构建与质量评测"
+      "highlight": "多模态数据构建与质量评测",
+      "detailMarkdown": "/public/projects/industrial-sft-pipeline/README.md"
     },
     {
       "id": "air-quality-agent",
@@ -253,7 +254,7 @@ window.portfolioDataFallback = {
         },
         {
           "heading": "合成数据质量过滤",
-          "content": "训练 StyleGAN 生成缺陷样本后，不能只凭肉眼判断质量。管线对生成图做自然度、融合度和可用性评分，自动过滤低质量样本。通过评分理由的词频分析，我们发现部分样本虽然能通过过滤器，却全部指向环形部件，最终定位到生成器 mode collapse。"
+          "content": "训练 Focus-StyleGAN 生成缺陷样本后，不能只凭肉眼判断质量。管线对生成图做自然度、融合度和可用性评分，自动过滤低质量样本。通过评分理由的词频分析，我们发现部分样本虽然能通过过滤器，却全部指向环形部件，最终定位到生成器发生类别漂移、丢失瓶身身份。"
         },
         {
           "heading": "总结",
