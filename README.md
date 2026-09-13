@@ -4,7 +4,7 @@
 
 ## 在线管理
 
-正式网址：`https://tech-notes-z.netlify.app`
+正式网址：`https://code-notes-lab.netlify.app`
 
 打开 `https://app.pagescms.org/ouou47471-cpu/tech-notes/main`，可以编辑：
 
