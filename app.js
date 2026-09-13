@@ -5,7 +5,7 @@ const state = {
   noteQuery: ""
 };
 
-const profile = portfolioData.profile;
+let profile = portfolioData.profile;
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 let lastFocusedElement = null;
@@ -57,6 +57,75 @@ function renderProfile() {
     if (item.url) return '<a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">' + escapeHtml(item.label) + " ↗</a>";
     return "<span>" + escapeHtml(item.text) + "</span>";
   }).join("");
+}
+
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element && value !== undefined && value !== null) element.textContent = value;
+}
+
+function renderPage() {
+  const page = portfolioData.page || {};
+  setText("navContactLabel", page.navContactLabel);
+  setText("projectsButtonLabel", page.projectsButtonLabel);
+  setText("notesButtonLabel", page.notesButtonLabel);
+  setText("panelQuoteLabel", page.panelQuoteLabel);
+  setText("panelQuote", page.panelQuote);
+  setText("projectsEyebrow", page.projectsEyebrow);
+  setText("projectsTitle", page.projectsTitle);
+  setText("projectsIntro", page.projectsIntro);
+  setText("experienceEyebrow", page.experienceEyebrow);
+  setText("experienceTitle", page.experienceTitle);
+  setText("experienceIntro", page.experienceIntro);
+  setText("recruiterTitle", page.recruiterTitle);
+  setText("skillsEyebrow", page.skillsEyebrow);
+  setText("skillsTitle", page.skillsTitle);
+  setText("skillsIntro", page.skillsIntro);
+  setText("notesEyebrow", page.notesEyebrow);
+  setText("notesTitle", page.notesTitle);
+  setText("notesIntro", page.notesIntro);
+  setText("strengthsEyebrow", page.strengthsEyebrow);
+  setText("strengthsTitle", page.strengthsTitle);
+  setText("contactEyebrow", page.contactEyebrow);
+  setText("contactIntro", page.contactIntro);
+  setText("contactPrimaryLabel", page.contactPrimaryLabel);
+  setText("contactNote", page.contactNote);
+
+  const heroTitle = $("#heroTitle");
+  if (heroTitle) {
+    heroTitle.innerHTML = escapeHtml(page.heroTitleLine1 || "") + "<br>" +
+      escapeHtml(page.heroTitleLine2Prefix || "") +
+      "<span>" + escapeHtml(page.heroTitleAccent || "") + "</span>" +
+      escapeHtml(page.heroTitleLine2Suffix || "");
+  }
+
+  const contactTitle = $("#contactTitle");
+  if (contactTitle) {
+    contactTitle.innerHTML = escapeHtml(page.contactTitleLine1 || "") + "<br>" + escapeHtml(page.contactTitleLine2 || "");
+  }
+
+  const recruiterPoints = $("#recruiterPoints");
+  if (recruiterPoints && Array.isArray(page.recruiterPoints)) {
+    recruiterPoints.innerHTML = page.recruiterPoints.map(function (item) {
+      return "<li>" + escapeHtml(item) + "</li>";
+    }).join("");
+  }
+
+  const recruiterCta = $("#recruiterCta");
+  if (recruiterCta) recruiterCta.innerHTML = escapeHtml(page.recruiterCta || "查看联系方式") + " <span>→</span>";
+
+  const capabilityStrip = $("#capabilityStrip");
+  if (capabilityStrip) {
+    const keywords = Array.isArray(page.capabilityKeywords) ? page.capabilityKeywords : [];
+    const sequence = keywords.concat(keywords);
+    capabilityStrip.innerHTML = sequence.map(function (item) {
+      return "<span>" + escapeHtml(item) + "</span><i></i>";
+    }).join("");
+  }
+
+  if (page.metaTitle) document.title = page.metaTitle;
+  const description = document.querySelector('meta[name="description"]');
+  if (description && page.metaDescription) description.setAttribute("content", page.metaDescription);
 }
 
 function renderProjects() {
@@ -326,6 +395,7 @@ async function loadManagedContent() {
     const notes = await responses[2].json();
     portfolioData = {
       profile: site.profile,
+      page: site.page || window.portfolioDataFallback.page || {},
       metrics: site.metrics,
       heroMeta: site.heroMeta,
       projects: projects.items,
@@ -334,6 +404,7 @@ async function loadManagedContent() {
       notes: notes.items,
       strengths: site.strengths
     };
+    profile = portfolioData.profile;
   } catch (error) {
     console.info("Using bundled fallback content.", error);
   }
@@ -342,6 +413,7 @@ async function loadManagedContent() {
 async function boot() {
   await loadManagedContent();
   renderProfile();
+  renderPage();
   renderProjects();
   renderExperience();
   renderSkills();

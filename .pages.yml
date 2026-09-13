@@ -10,19 +10,59 @@ content:
     type: file
     path: _data/site.json
     fields:
+      - name: page
+        label: 首页与栏目文案
+        description: 修改页面标题、大标题、各栏目说明和联系文案。
+        type: object
+        fields:
+          - { name: metaTitle, label: 浏览器标题, type: string }
+          - { name: metaDescription, label: 搜索摘要, type: text }
+          - { name: navContactLabel, label: 导航联系按钮, type: string }
+          - { name: heroTitleLine1, label: 首页大标题第一行, type: string }
+          - { name: heroTitleLine2Prefix, label: 首页大标题第二行前缀, type: string }
+          - { name: heroTitleAccent, label: 首页大标题强调词, type: string }
+          - { name: heroTitleLine2Suffix, label: 首页大标题结尾, type: string }
+          - { name: panelQuoteLabel, label: 速览卡片引语标签, type: string }
+          - { name: panelQuote, label: 速览卡片引语, type: text }
+          - { name: capabilityKeywords, label: 核心关键词, type: string, list: true }
+          - { name: projectsButtonLabel, label: 项目按钮文字, type: string }
+          - { name: notesButtonLabel, label: 经验按钮文字, type: string }
+          - { name: projectsEyebrow, label: 项目区英文标签, type: string }
+          - { name: projectsTitle, label: 项目区标题, type: string }
+          - { name: projectsIntro, label: 项目区说明, type: text }
+          - { name: experienceEyebrow, label: 经历区英文标签, type: string }
+          - { name: experienceTitle, label: 经历区标题, type: string }
+          - { name: experienceIntro, label: 经历区说明, type: text }
+          - { name: recruiterTitle, label: 招聘方提示标题, type: string }
+          - { name: recruiterPoints, label: 招聘方提示内容, type: string, list: true }
+          - { name: recruiterCta, label: 招聘方提示按钮, type: string }
+          - { name: skillsEyebrow, label: 能力区英文标签, type: string }
+          - { name: skillsTitle, label: 能力区标题, type: string }
+          - { name: skillsIntro, label: 能力区说明, type: text }
+          - { name: notesEyebrow, label: 经验区英文标签, type: string }
+          - { name: notesTitle, label: 经验区标题, type: string }
+          - { name: notesIntro, label: 经验区说明, type: text }
+          - { name: strengthsEyebrow, label: 优势区英文标签, type: string }
+          - { name: strengthsTitle, label: 优势区标题, type: string }
+          - { name: contactEyebrow, label: 联系区英文标签, type: string }
+          - { name: contactTitleLine1, label: 联系大标题第一行, type: string }
+          - { name: contactTitleLine2, label: 联系大标题第二行, type: string }
+          - { name: contactIntro, label: 联系区说明, type: text }
+          - { name: contactPrimaryLabel, label: 主联系按钮文字, type: string }
+          - { name: contactNote, label: 联系区备注, type: string }
       - name: profile
         label: 基本资料
         type: object
         fields:
-          - { name: name, label: 姓名, type: string }
+          - { name: name, label: 显示名称（可填化名）, type: string }
           - { name: initials, label: 头像字母, type: string }
           - { name: role, label: 求职岗位, type: string }
           - { name: focus, label: 技术方向, type: string }
           - { name: availability, label: 求职状态, type: string }
-          - { name: email, label: 联系邮箱, type: string }
+          - { name: email, label: 联系邮箱（留空则使用 GitHub）, type: string }
           - { name: github, label: GitHub 地址, type: string }
-          - { name: location, label: 所在城市与工作方式, type: string }
-          - { name: years, label: 经验年限, type: string }
+          - { name: location, label: 工作方式（勿填详细地址）, type: string }
+          - { name: years, label: 经验或毕业状态, type: string }
           - { name: summary, label: 个人简介, type: text }
       - name: metrics
         label: 数据概览
@@ -104,10 +144,7 @@ content:
         fields:
           - { name: id, label: 唯一标识, type: string }
           - { name: number, label: 编号, type: string }
-          - name: category
-            label: 分类
-            type: select
-            options: [性能优化, 问题排查, 学习总结, 工程实践, 项目复盘]
+          - { name: category, label: 分类（可自定义）, type: string }
           - { name: title, label: 标题, type: string }
           - { name: excerpt, label: 摘要, type: text }
           - { name: date, label: 日期, type: string }
