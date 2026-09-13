@@ -4,13 +4,15 @@
 
 ## 在线管理
 
+正式网址：`https://tech-notes-z.netlify.app`
+
 打开 `https://app.pagescms.org/ouou47471-cpu/tech-notes/main`，可以编辑：
 
 - 页面标题、首页说明、栏目标题和按钮文字
 - 项目背景、参与角色、技术栈、问题、解决方法和复盘结果
 - 经验文章的分类、标题、摘要、封面和正文
 
-内容会保存到 `_data/`，提交后 GitHub Pages 自动重新发布。
+内容会保存到 `_data/`。提交后 GitHub Actions 会自动部署到 Netlify。
 
 ## 本地预览
 
@@ -18,5 +20,5 @@
 
 ## 部署
 
-仓库已启用 GitHub Pages，发布分支为 `main`，发布目录为根目录。
+发布分支为 `main`，GitHub Actions 工作流为 `.github/workflows/netlify.yml`。
 
