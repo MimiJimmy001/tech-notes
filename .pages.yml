@@ -14,8 +14,18 @@ content:
         label: 首页与栏目文案
         type: object
         fields:
+          - { name: blogName, label: 博客名称, type: string }
           - { name: metaTitle, label: 浏览器标题, type: string }
           - { name: metaDescription, label: 搜索摘要, type: text }
+          - name: author
+            label: 博主介绍（不是简历）
+            type: object
+            fields:
+              - { name: displayName, label: 公开昵称, type: string }
+              - { name: avatarText, label: 头像文字, type: string }
+              - { name: headline, label: 一句话标题, type: string }
+              - { name: bio, label: 博客简介, type: text }
+              - { name: topics, label: 关注方向, type: string, list: true }
           - { name: heroEyebrow, label: 首页英文标签, type: string }
           - { name: heroTitleLead, label: 首页大标题第一行, type: string }
           - { name: heroTitleAccent, label: 首页大标题强调内容, type: string }
@@ -29,7 +39,6 @@ content:
           - { name: notesEyebrow, label: 经验区英文标签, type: string }
           - { name: notesTitle, label: 经验区标题, type: string }
           - { name: notesIntro, label: 经验区说明, type: text }
-          - { name: footerName, label: 页脚名称, type: string }
 
   - name: projects
     label: 项目记录

@@ -1,20 +1,37 @@
 {
   "page": {
-    "metaTitle": "项目与经验 | 技术博客",
-    "metaDescription": "记录项目过程、技术选型、问题排查与经验总结。",
+    "metaTitle": "Z的技术博客 | 项目与经验",
+    "metaDescription": "记录项目过程、技术选型、问题排查与学习总结。",
     "heroEyebrow": "PROJECTS & LESSONS",
     "heroTitleLead": "记录项目，",
     "heroTitleAccent": "也记录解决问题的方法。",
     "heroSummary": "这里整理我做过的项目、遇到的技术问题、尝试过的解决方式，以及从复盘中沉淀下来的知识点。",
     "projectsButtonLabel": "浏览项目",
     "notesButtonLabel": "阅读经验总结",
-    "heroTags": ["项目复盘", "问题排查", "知识总结"],
+    "heroTags": [
+      "项目复盘",
+      "问题排查",
+      "知识总结"
+    ],
     "projectsEyebrow": "01 / PROJECTS",
     "projectsTitle": "项目记录",
     "projectsIntro": "整理每个项目的背景、职责、关键难点和解决方案。",
     "notesEyebrow": "02 / NOTES",
     "notesTitle": "经验总结",
     "notesIntro": "记录问题是怎么出现的、如何定位，以及最后沉淀了什么方法。",
-    "footerName": "项目与经验"
+    "blogName": "Z的技术博客",
+    "author": {
+      "displayName": "Z.",
+      "avatarText": "Z",
+      "headline": "记录数据工程与 LLM 应用的学习过程",
+      "bio": "刚毕业不久，正在用项目和文章整理自己的技术路线。内容以真实项目、问题排查和学习笔记为主。",
+      "topics": [
+        "Python",
+        "SQL",
+        "LLM",
+        "数据处理",
+        "问题排查"
+      ]
+    }
   }
 }

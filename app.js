@@ -25,7 +25,8 @@ function setText(id, value) {
 
 function renderPage() {
   const page = portfolioData.page || {};
-  setText("brandName", page.footerName || "项目与经验");
+  const blogName = page.blogName || "项目与经验";
+  setText("brandName", blogName);
   setText("heroEyebrow", page.heroEyebrow || "PROJECTS & LESSONS");
   setText("heroSummary", page.heroSummary || "");
   setText("projectsButtonLabel", page.projectsButtonLabel || "浏览项目");
@@ -36,7 +37,7 @@ function renderPage() {
   setText("notesEyebrow", page.notesEyebrow || "02 / NOTES");
   setText("notesTitle", page.notesTitle || "经验总结");
   setText("notesIntro", page.notesIntro || "");
-  setText("footerName", page.footerName || "项目与经验");
+  setText("footerName", blogName);
 
   const heroTitle = $("#heroTitle");
   if (heroTitle) {
@@ -48,6 +49,31 @@ function renderPage() {
     const tags = Array.isArray(page.heroTags) ? page.heroTags : [];
     heroTags.innerHTML = tags.map(function (item) {
       return "<span>" + escapeHtml(item) + "</span>";
+    }).join("");
+  }
+
+  const author = page.author || {};
+  setText("authorAvatar", author.avatarText || "Z");
+  setText("authorName", author.displayName || "Z.");
+  setText("authorHeadline", author.headline || "");
+  setText("authorBio", author.bio || "");
+  const authorTopics = $("#authorTopics");
+  if (authorTopics) {
+    authorTopics.innerHTML = (author.topics || []).map(function (item) {
+      return "<span>" + escapeHtml(item) + "</span>";
+    }).join("");
+  }
+  const blogStats = $("#blogStats");
+  if (blogStats) {
+    const projectsCount = (portfolioData.projects || []).length;
+    const articlesCount = (portfolioData.notes || []).length;
+    const topicCount = new Set((portfolioData.notes || []).map(function (note) { return note.category; }).filter(Boolean)).size;
+    blogStats.innerHTML = [
+      { value: articlesCount, label: "篇文章" },
+      { value: projectsCount, label: "个项目" },
+      { value: topicCount, label: "个分类" }
+    ].map(function (metric) {
+      return "<div><strong>" + escapeHtml(metric.value) + "</strong><span>" + escapeHtml(metric.label) + "</span></div>";
     }).join("");
   }
 
