@@ -65,6 +65,7 @@ content:
           - { name: solution, label: 解决方法, type: string, list: true }
           - { name: impact, label: 结果与复盘, type: string, list: true }
           - { name: highlight, label: 核心亮点, type: string }
+          - { name: detailMarkdown, label: 详细 Markdown 路径, type: string }
 
   - name: notes
     label: 经验总结

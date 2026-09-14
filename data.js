@@ -43,8 +43,46 @@ window.portfolioDataFallback = {
   },
   "projects": [
     {
-      "id": "industrial-sft-pipeline",
+      "id": "focus-stylegan-augmentation",
       "number": "01",
+      "title": "基于 Focus-StyleGAN 的工业缺陷图像增广系统",
+      "type": "本科毕业设计 / 生成式视觉",
+      "role": "独立完成",
+      "period": "本科毕业设计",
+      "stack": [
+        "PyTorch",
+        "Focus-StyleGAN",
+        "WGAN-GP",
+        "AdaIN",
+        "CBAM",
+        "Optuna",
+        "Flask",
+        "MVTec AD"
+      ],
+      "summary": "面向工业异常检测中的缺陷样本稀缺问题，设计双分支解耦生成器，将缺陷生成与背景保持分开建模，并通过注意力融合和多尺度判别器生成可控伪异常图像。",
+      "challenge": [
+        "工业缺陷样本稀少，传统几何变换无法生成新的缺陷形态。",
+        "单分支生成器需要同时学习缺陷纹理和产品背景，容易出现背景扭曲。",
+        "微小、低对比度缺陷难以被单尺度判别器有效识别。"
+      ],
+      "solution": [
+        "设计缺陷聚焦分支和背景保持分支，并引入 AdaIN 进行风格控制。",
+        "使用注意力引导融合模块消除拼接痕迹，使缺陷与背景过渡自然。",
+        "构建三尺度 PatchGAN 判别器，并在特征层中嵌入 CBAM 注意力。",
+        "联合 WGAN-GP、VGG19 感知损失、L1 重构损失和 LPIPS 约束训练过程。",
+        "通过 Optuna 搜索生成器、判别器学习率和多项损失权重。"
+      ],
+      "impact": [
+        "生成质量达到 FID 22.5、IS 2.9、LPIPS 0.18、PPS 0.79。",
+        "将伪异常样本加入训练集后，PaDiM 的 Pixel-AUC 从 0.852 提升到 0.943。",
+        "PRO-AUC 从 0.828 提升到 0.925，Cable 与 Capsule 等稀缺类别提升最明显。"
+      ],
+      "highlight": "双分支生成、注意力融合与下游增广验证",
+      "detailMarkdown": "/public/projects/focus-stylegan-augmentation/README.md"
+    },
+    {
+      "id": "industrial-sft-pipeline",
+      "number": "02",
       "title": "面向工业质检的多模态 SFT 数据构建与质量过滤管线",
       "type": "多模态数据工程",
       "role": "核心开发 / 数据管线",
@@ -79,7 +117,7 @@ window.portfolioDataFallback = {
     },
     {
       "id": "air-quality-agent",
-      "number": "02",
+      "number": "03",
       "title": "多城市空气质量监测与智能问答 Agent",
       "type": "省级大创 / LLM Agent",
       "role": "核心成员 / Agent 与 RAG",
@@ -119,7 +157,7 @@ window.portfolioDataFallback = {
     },
     {
       "id": "pcb-data-engineering",
-      "number": "03",
+      "number": "04",
       "title": "PCB 工程检验与报价大模型的多源数据清洗",
       "type": "粤港澳大湾区国创中心 · 数据工程实习",
       "role": "数据工程实习生",
