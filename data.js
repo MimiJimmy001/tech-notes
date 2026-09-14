@@ -86,30 +86,36 @@ window.portfolioDataFallback = {
       "period": "2024.09 - 2025.06",
       "stack": [
         "LangGraph",
+        "Pandas",
+        "scikit-learn",
         "RAG",
         "Chroma",
         "MCP",
         "FastAPI",
+        "SQLite",
         "Docker"
       ],
-      "summary": "基于 6 个城市 52,704 条小时级空气质量数据，构建支持查询、预测、预警和政策检索的工具调用 Agent。",
+      "summary": "基于 6 个城市 52,704 条小时级空气质量数据，构建覆盖实时查询、24h 预测、综合预警、相关性分析与政策检索的工具调用 Agent。",
       "challenge": [
         "空气质量数据存在缺失值、时间粒度和城市指标口径不一致的问题。",
         "工具数量达到 10 个后，规则和 LLM 都容易在相似问题上选错工具。",
-        "RAG 回答需要引用政策条款，并避免在低置信场景下强行生成答案。"
+        "RAG 回答需要引用政策条款，低置信时还要主动拒答，避免编造标准编号。",
+        "问答链路缺少可追踪记录，bad case 难以定位和回归。"
       ],
       "solution": [
-        "完成多城市数据清洗、时间对齐和指标口径统一，并整理政策条款知识库。",
-        "使用 LangGraph 构建规则与 LLM 双模式工具调用 Agent，通过 MCP 暴露 stdio 与 streamable-http 接口。",
-        "设计覆盖 10 个工具、含 12 条易混淆样本的 60 条工具选择评测集。",
-        "通过 bad case 分析完成三轮迭代，并加入低置信拒答和引用约束。"
+        "完成多城市数据清洗、时间对齐与指标口径统一，并训练随机森林预测模型。",
+        "使用 LangGraph 构建 LLM Agent，同时保留规则版自动降级路径；通过 MCP 暴露 stdio 与 streamable-http 两种传输方式。",
+        "将 10 个工具统一封装为结构化 Schema，并引入 RAG 引用溯源、低置信拒答和数据约束三层幻觉控制。",
+        "设计覆盖 10 个工具、含 12 条易混淆样本的 60 条回归评测集，并迭代解决 12 条 bad case。",
+        "用 SQLite 记录问题、工具调用、回答、延迟和 token，将 bad case 查找与回归验证流程闭环。"
       ],
       "impact": [
-        "规则模式工具选择命中率从 80% 提升到 100%。",
-        "LLM 模式工具选择命中率从 81.7% 提升到 96.7%。",
-        "Agent、RAG 服务通过 FastAPI 与 Docker 完成部署。"
+        "规则模式工具选择从 48/60 提升到 60/60，准确率 80% → 100%。",
+        "LLM 模式工具选择从 49/60 提升到 58/60，准确率 81.7% → 96.7%，0 调用失败。",
+        "Agent、RAG、日报和 MCP 服务通过 FastAPI、Docker 与 SQLite 完成落地。"
       ],
-      "highlight": "工具调用评测与 RAG 工程"
+      "highlight": "工具调用评测、RAG 溯源与可观测性",
+      "detailMarkdown": "/public/projects/air-quality-agent/README.md"
     },
     {
       "id": "pcb-data-engineering",
