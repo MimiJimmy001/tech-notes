@@ -117,8 +117,46 @@ window.portfolioDataFallback = {
       "detailMarkdown": "/public/projects/industrial-sft-pipeline/README.md"
     },
     {
-      "id": "air-quality-agent",
+      "id": "sft-audit-kit",
       "number": "03",
+      "title": "SFT Audit Kit：多模态数据集质量审计工具",
+      "type": "数据工程工具 / 质量门禁",
+      "role": "独立开发",
+      "period": "持续开发",
+      "stack": [
+        "Python",
+        "Pillow",
+        "JSONL",
+        "MD5",
+        "unittest",
+        "HTML Report",
+        "CI"
+      ],
+      "summary": "把 SFT 数据管线中的质量检查抽象成通用工具，对数据格式、图片完整性、重复样本、ID 冲突、训练集泄漏和模板文本进行审计，并输出可追溯报告。",
+      "challenge": [
+        "多模态数据缺少统一结构，不同版本可能没有顶层 ID、类别或 split 字段。",
+        "固定图片尺寸白名单会把 MVTec 等真实数据的合法尺寸误判为异常。",
+        "重复文本和重复图片如果按记录逐条报告，会产生大量不可复核的噪声。",
+        "数据发布前缺少自动质量门禁，问题往往到训练阶段才被发现。"
+      ],
+      "solution": [
+        "支持必填字段校验，同时从图片路径和 meta.annotation 推导 ID、类别与 split。",
+        "支持 manifest.json 或 --dataset-root 自动解析外部图片目录。",
+        "使用完整图片解码和 MD5 精确去重，检查缺图、重复图片与 train/test 泄漏。",
+        "按问题组聚合重复文本警告，并输出 HTML、JSON、CSV 三份报告。",
+        "提供 --strict 模式，将 Error 转换为 CI 非零退出码。"
+      ],
+      "impact": [
+        "在 1725 条真实 MVTec SFT 数据上完成完整审计，1725/1725 条无错误。",
+        "识别 1725 张唯一图片，未发现缺图、重复图片、重复 ID 或数据泄漏。",
+        "将 614 条图片尺寸误报降为 0，并将重复文本告警由逐条输出压缩为 116 个问题组。"
+      ],
+      "highlight": "数据发布质量门禁与可追溯审计报告",
+      "detailMarkdown": "/public/projects/sft-audit-kit/README.md"
+    },
+    {
+      "id": "air-quality-agent",
+      "number": "04",
       "title": "多城市空气质量监测与智能问答 Agent",
       "type": "省级大创 / LLM Agent",
       "role": "核心成员 / Agent 与 RAG",
