@@ -15,23 +15,36 @@
 
 基础项目 Focus-StyleGAN 负责生成可控伪异常图像，本扩展项目继续把生成结果转化为可复现、可追溯的数据生产与质量评估管线，以及一个标准化的 SFT 数据集。
 
-## 系统结构
+## 与基础项目的关系
 
-![Focus-StyleGAN 模型结构](/public/projects/industrial-sft-pipeline/architecture.png)
+| 基础项目：Focus-StyleGAN | 扩展项目：多模态 SFT 数据管线 |
+| --- | --- |
+| 负责学习缺陷分布并生成伪异常图像 | 接收基础项目生成的图像，继续构建标准训练数据 |
+| 解决样本不足和缺陷形态单一问题 | 解决标注、改写、去重、质量过滤和版本追溯问题 |
+| 使用 FID、IS、LPIPS、PPS、Pixel-AUC、PRO-AUC 评估生成效果 | 使用真实图与生成图盲测验证数据是否真正可用 |
+| 保留四种图像增广方式与 Flask 演示系统 | 在生成结果上新增 pipeline A、pipeline B 与 dataset.jsonl |
 
-模型部分包含缺陷聚焦分支、背景保持分支和注意力门控融合模块。判别器使用多尺度 CBAM，训练采用 WGAN-GP 与感知损失、LPIPS 和目标重建约束。项目还实现了 GAN 伪异常生成、真实缺陷迁移、检索式增广和缺陷堆叠增广四类路径。
+扩展项目复用基础项目的生成器、增广入口和评估结论，但不重新包装为新的 GAN 训练成果。它的新增价值集中在数据资产生产和质量评测。
+
+## 扩展项目结构
 
 ![数据生产与质量过滤流程](/public/projects/industrial-sft-pipeline/pipeline-flow.png)
 
+基础项目负责提供图像来源。扩展项目在此基础上增加程序化标注、VLM 改写、MD5 去重、JSONL 校验、VLM 三维质量过滤、盲测对照和版本化目录。
+
+![基础项目 Focus-StyleGAN 架构](/public/projects/industrial-sft-pipeline/architecture.png)
+
+上图属于基础项目，作为扩展项目的模型来源说明保留。
+
 ## 我具体做了什么
 
-- 基于 MVTec AD 的 ground-truth mask 提取缺陷类型、九宫格位置、面积和 bbox，生成结构化初始标注。
+- 复用基础项目生成的伪异常图像，并以 MVTec AD 的 ground-truth mask 提取缺陷类型、九宫格位置、面积和 bbox。
 - 清理并统一数据格式，通过 Qwen-VL / 模板降级两条路径生成自然语言 instruction 和 response。
 - 修复 dHash 在真实数据上误删 39% 样本的问题，改为 MD5 精确去重，并增加 JSONL 字段校验、版本目录和配置哈希。
 - 搭建合成数据质量过滤模块，对 GAN 生成图做自然度、融合度、可用性三维评分，低于 3.0 自动剔除。
 - 设计真实缺陷图、真实正常图、GAN 合成图三组盲测对照实验，统一使用中立提示词，避免向 VLM 泄露图片来源。
-- 补充模型评估链路，包括 FID、IS、LPIPS、PSNR、SSIM、自研 PPS 物理合理性指标、Pixel-AUC、PRO-AUC 与消融实验。
-- 提供 Flask Web 交互界面与 RESTful API，支持单图、批量、真实缺陷迁移、检索式和堆叠式增广。
+- 将基础项目已有的 FID、IS、LPIPS、PPS、Pixel-AUC、PRO-AUC 结果作为生成质量证据，而不是重复宣称为扩展项目产出。
+- 复用基础项目的 Flask Web 与四种增广模式，扩展项目负责把其输出接入标准化数据管线。
 
 ## 核心数据
 
@@ -140,13 +153,13 @@ Kaggle bottle 训练从 30 到 100 epoch 时，FID 约从 187 降到 96。但生
 
 统计指标只能说明分布接近，不能保证生成样本保留了业务语义。真正可用的数据管线必须同时具备视觉质量评估、语义一致性检查和可追溯的过滤报告。
 
-## 为什么这个项目不是普通 GAN Demo
+## 为什么这是扩展项目，而不是重复基础项目
 
-- 不是只训练一个生成器，而是覆盖模型训练、四类增广和 SFT 数据资产生产。
-- 不是只计算 FID，而是同时实现 PPS、Pixel-AUC、PRO-AUC 和消融实验。
-- 不是把生成图直接当训练数据，而是增加了 VLM 语义质量过滤和盲测对照。
-- 不是只输出图片，而是输出 dataset.jsonl、manifest.json、版本目录和过滤报告。
-- 数据管线与生成器解耦。未来把 GAN 替换成扩散模型，管线代码无需改变。
+- 基础项目负责“把图生成出来”，扩展项目负责“把图变成可训练的数据”。
+- 基础项目的重点是指标和样本多样性，扩展项目的重点是标注结构、语义一致性和质量过滤。
+- 基础项目输出图像与模型结果，扩展项目输出 dataset.jsonl、manifest.json、版本目录和过滤报告。
+- 扩展项目发现了基础项目中“FID 改善但图像语义已经漂移”的问题，并用 VLM 盲测提供证据。
+- 数据管线与生成器解耦。基础项目未来把 GAN 替换成扩散模型，扩展项目的数据管线仍然可以复用。
 
 ## 项目边界
 
@@ -173,4 +186,10 @@ python tests/test_datapipe.py
 
 ## 技术栈
 
-Python、PyTorch、Focus-StyleGAN、WGAN-GP、AdaIN、CBAM、Optuna、Qwen-VL、DashScope 兼容接口、MVTec AD、LLaMA-Factory JSONL、pandas、OpenCV、Flask、RESTful API、Docker。
+### 扩展项目新增
+
+Python、Qwen-VL、DashScope 兼容接口、VLM 三维质量评分、程序化标注、MD5 去重、JSONL 校验、配置哈希、版本化 manifest、盲测对照实验。
+
+### 基础项目复用
+
+Focus-StyleGAN、WGAN-GP、AdaIN、CBAM、Optuna、PyTorch、MVTec AD、FID、IS、LPIPS、PPS、Pixel-AUC、PRO-AUC、Flask Web 与 RESTful API。
