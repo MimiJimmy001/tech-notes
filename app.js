@@ -303,6 +303,13 @@ function renderMarkdown(markdown) {
       continue;
     }
 
+    if (/^<video\b[\s\S]*<\/video>$/i.test(trimmed)) {
+      closeList();
+      html.push(trimmed);
+      index += 1;
+      continue;
+    }
+
     closeList();
     const paragraph = [trimmed];
     index += 1;

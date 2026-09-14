@@ -356,6 +356,7 @@ html[data-theme="dark"] .theme-toggle .sun-icon { display: block; }
 .project-markdown blockquote p { margin: 0; color: var(--ink); }
 .project-markdown figure { margin: 26px 0; }
 .project-markdown img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface-2); }
+.project-markdown video { display: block; width: 100%; max-height: 620px; margin: 26px 0; border: 1px solid var(--line); border-radius: 16px; background: #0d130f; object-fit: contain; }
 .project-markdown code { padding: 2px 5px; border-radius: 5px; background: var(--surface-2); color: var(--accent); font-size: .9em; }
 .project-markdown pre { overflow-x: auto; margin: 18px 0 24px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #17231c; color: #edf1e9; }
 .project-markdown pre code { padding: 0; background: transparent; color: inherit; font-size: 12px; line-height: 1.7; }

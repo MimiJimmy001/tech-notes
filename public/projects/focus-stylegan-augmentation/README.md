@@ -111,7 +111,7 @@ Focus-StyleGAN 由四部分组成：
 
 前端使用 HTML、CSS 和 JavaScript，后端基于 Flask、PyTorch 与 RESTful API。系统演示页面支持上传图像、自动匹配类别、生成缺陷、查看分析结果和批量处理。
 
-![系统前端演示](/public/projects/focus-stylegan-augmentation/system-demo.png)
+<video controls preload="metadata" playsinline poster="/public/projects/focus-stylegan-augmentation/system-demo.png"><source src="https://github.com/ouou47471-cpu/tech-notes/releases/download/project-media-assets/focus-stylegan-system-demo.mp4" type="video/mp4">你的浏览器不支持视频播放。</video>
 
 ## 关键问题与解决方案
 
