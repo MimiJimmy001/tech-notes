@@ -84,7 +84,7 @@ window.portfolioDataFallback = {
       "id": "industrial-sft-pipeline",
       "number": "02",
       "title": "面向工业质检的多模态 SFT 数据构建与质量过滤管线",
-      "type": "多模态数据工程",
+      "type": "扩展项目 / 多模态数据工程",
       "role": "核心开发 / 数据管线",
       "period": "2025.09 - 2026.09",
       "stack": [
@@ -95,7 +95,7 @@ window.portfolioDataFallback = {
         "LLaMA-Factory",
         "MD5"
       ],
-      "summary": "从缺陷 mask 标注、VLM 自然语言改写，到合成数据生成、去重和质量评分，搭建可对接 LLaMA-Factory 的多模态 SFT 数据生产管线。",
+      "summary": "在 Focus-StyleGAN 基础项目上扩展，从缺陷 mask 标注、VLM 自然语言改写，到合成数据生成、去重和质量评分，搭建可对接 LLaMA-Factory 的多模态 SFT 数据生产管线。",
       "challenge": [
         "工业缺陷样本数量有限，直接训练容易导致类别覆盖不足。",
         "dHash 去重误删 39% 样本，合成数据与真实数据的去重策略不能简单共用。",
