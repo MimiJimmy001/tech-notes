@@ -155,8 +155,47 @@ window.portfolioDataFallback = {
       "detailMarkdown": "/public/projects/sft-audit-kit/README.md"
     },
     {
-      "id": "air-quality-agent",
+      "id": "agent-eval-workbench",
       "number": "04",
+      "title": "Agent Eval Workbench：工具调用评测工作台",
+      "type": "Agent 工程工具 / 可观测性",
+      "role": "独立开发",
+      "period": "持续开发",
+      "stack": [
+        "Python",
+        "JSONL",
+        "Tool Calling",
+        "RAG Eval",
+        "Parameter Eval",
+        "HTML Report",
+        "CI"
+      ],
+      "summary": "把 Agent 评测从单一工具准确率扩展为工具、参数、RAG 引用、拒答、JSON、延迟和 token 七维评测，并支持多模型或 Prompt 横向对比。",
+      "challenge": [
+        "只比较工具名称，无法发现城市、污染物等参数传错。",
+        "最终答案看似正确，但 RAG 引用可能不存在或并不完整。",
+        "应拒答的问题可能仍然生成答案，错误拒答也缺少指标。",
+        "模型原始 JSON 损坏时，只看工具调用结果会漏掉执行链路问题。",
+        "不同模型和 Prompt 的结果难以使用同一套标准横向比较。"
+      ],
+      "solution": [
+        "对工具集合执行顺序无关比较，并统计缺失工具和额外工具。",
+        "增加参数级标注、字段归一化和匹配准确率。",
+        "增加 RAG 引用完全匹配率、平均召回率和拒答准确率。",
+        "校验 JSON 布尔标记或直接解析 raw 输出，统计结构化输出有效率。",
+        "增加规则版与 LLM 版对比报告，以及 --fail-under CI 门禁。"
+      ],
+      "impact": [
+        "使用 60 条真实空气质量案例复测，规则版 100%，LLM 版 96.7%。",
+        "增强基准准确识别参数错误、引用缺失、拒答失败和无效 JSON。",
+        "LLM 版 60 条真实结果的结构化输出有效率为 100%。"
+      ],
+      "highlight": "Agent 多层评测与回归质量门禁",
+      "detailMarkdown": "/public/projects/agent-eval-workbench/README.md"
+    },
+    {
+      "id": "air-quality-agent",
+      "number": "05",
       "title": "多城市空气质量监测与智能问答 Agent",
       "type": "省级大创 / LLM Agent",
       "role": "核心成员 / Agent 与 RAG",
