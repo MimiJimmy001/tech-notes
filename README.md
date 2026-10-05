@@ -1,6 +1,12 @@
 # 项目与经验
 
+[![Website](https://img.shields.io/badge/website-online-brightgreen)](https://code-notes-lab.netlify.app)
+
 这是一个只展示项目记录和经验总结的静态技术博客，不包含个人简历、求职状态、联系方式或工作经历。
+
+## 仓库定位
+
+本仓库用于维护个人项目案例与工程经验站点，重点展示项目过程和复盘，不替代各项目的源码仓库。
 
 ## 在线管理
 
